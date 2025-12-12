@@ -70,6 +70,15 @@ declare module "@mui/material/Button" {
     stroke: true;
     ghost: true;
   }
+
+  interface ButtonPropsColorOverrides {
+    prendaBlue: true;
+    prendaGrey: true;
+    prendaRed: true;
+    prendaYellow: true;
+    prendaGreen: true;
+    prendaMagenta: true;
+  }
 }
 
 // #region Custom palette
@@ -92,17 +101,6 @@ declare module "@mui/material/styles" {
     prendaYellow?: PaletteOptions["primary"];
     prendaGreen?: PaletteOptions["primary"];
     prendaMagenta?: PaletteOptions["primary"];
-  }
-}
-
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    prendaBlue: true;
-    prendaGrey: true;
-    prendaRed: true;
-    prendaYellow: true;
-    prendaGreen: true;
-    prendaMagenta: true;
   }
 }
 // #endregion Custom palette
