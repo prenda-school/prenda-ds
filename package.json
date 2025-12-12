@@ -1,0 +1,43 @@
+{
+  "name": "@prenda-school/prenda-ds",
+  "version": "0.0.1",
+  "description": "Prenda design system theme and utilities",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run type-check && npm run build",
+    "format-lint": "npx @biomejs/biome check --write src/"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "mui",
+    "theme",
+    "design-system",
+    "typescript"
+  ],
+  "author": "Blake Bishop",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.3",
+    "@prenda-school/prenda-icons": "^1.0.17"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/react": "^19.1.8",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  }
+}
