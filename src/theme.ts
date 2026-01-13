@@ -1,83 +1,84 @@
-import React from "react";
-import { outlinedInputClasses } from "@mui/material";
-import { createTheme, Theme } from "@mui/material/styles";
+import { outlinedInputClasses } from "@mui/material"
+import { type Theme, createTheme } from "@mui/material/styles"
 import {
   AlertOctagon,
   AlertTriangle,
   CheckCircle,
   Cross,
   Info,
-} from "@prenda-school/prenda-icons";
+} from "@prenda-school/prenda-icons"
+import React from "react"
 import {
   PrendaBlues,
   PrendaGreens,
   PrendaGreys,
   PrendaMagentas,
+  PrendaPurple,
   PrendaReds,
   PrendaYellows,
-} from "./colors";
+} from "./colors"
 
 declare module "@mui/material/styles" {
   // #region Custom typography variants
   interface TypographyVariants {
-    label: React.CSSProperties;
-    description: React.CSSProperties;
-    T18: React.CSSProperties;
-    T22: React.CSSProperties;
-    T28: React.CSSProperties;
-    T32: React.CSSProperties;
+    label: React.CSSProperties
+    description: React.CSSProperties
+    T18: React.CSSProperties
+    T22: React.CSSProperties
+    T28: React.CSSProperties
+    T32: React.CSSProperties
   }
 
   interface TypographyVariantsOptions {
-    label?: React.CSSProperties;
-    description?: React.CSSProperties;
-    T18?: React.CSSProperties;
-    T22?: React.CSSProperties;
-    T28?: React.CSSProperties;
-    T32?: React.CSSProperties;
+    label?: React.CSSProperties
+    description?: React.CSSProperties
+    T18?: React.CSSProperties
+    T22?: React.CSSProperties
+    T28?: React.CSSProperties
+    T32?: React.CSSProperties
   }
   // #endregion Custom typography variants
 
   // #region Custom button variants
   interface ButtonVariants {
-    primary: React.CSSProperties;
-    stroke: React.CSSProperties;
-    ghost: React.CSSProperties;
+    primary: React.CSSProperties
+    stroke: React.CSSProperties
+    ghost: React.CSSProperties
   }
 
   interface ButtonVariantsOptions {
-    primary?: React.CSSProperties;
-    stroke?: React.CSSProperties;
-    ghost?: React.CSSProperties;
+    primary?: React.CSSProperties
+    stroke?: React.CSSProperties
+    ghost?: React.CSSProperties
   }
   // #endregion Custom typography variants
 }
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
-    label: true;
-    description: true;
-    T18: true;
-    T22: true;
-    T28: true;
-    T32: true;
+    label: true
+    description: true
+    T18: true
+    T22: true
+    T28: true
+    T32: true
   }
 }
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
-    primary: true;
-    stroke: true;
-    ghost: true;
+    primary: true
+    stroke: true
+    ghost: true
   }
 
   interface ButtonPropsColorOverrides {
-    prendaBlue: true;
-    prendaGrey: true;
-    prendaRed: true;
-    prendaYellow: true;
-    prendaGreen: true;
-    prendaMagenta: true;
+    prendaBlue: true
+    prendaGrey: true
+    prendaRed: true
+    prendaYellow: true
+    prendaGreen: true
+    prendaMagenta: true
   }
 }
 
@@ -86,21 +87,23 @@ declare module "@mui/material/Button" {
 // so consumers get proper typing when using the extended palette.
 declare module "@mui/material/styles" {
   interface Palette {
-    prendaBlue: Palette["primary"];
-    prendaGrey: Palette["primary"];
-    prendaRed: Palette["primary"];
-    prendaYellow: Palette["primary"];
-    prendaGreen: Palette["primary"];
-    prendaMagenta: Palette["primary"];
+    prendaBlue: Palette["primary"]
+    prendaGrey: Palette["primary"]
+    prendaRed: Palette["primary"]
+    prendaYellow: Palette["primary"]
+    prendaGreen: Palette["primary"]
+    prendaMagenta: Palette["primary"]
+    prendaPurple: Palette["primary"]
   }
 
   interface PaletteOptions {
-    prendaBlue?: PaletteOptions["primary"];
-    prendaGrey?: PaletteOptions["primary"];
-    prendaRed?: PaletteOptions["primary"];
-    prendaYellow?: PaletteOptions["primary"];
-    prendaGreen?: PaletteOptions["primary"];
-    prendaMagenta?: PaletteOptions["primary"];
+    prendaBlue?: PaletteOptions["primary"]
+    prendaGrey?: PaletteOptions["primary"]
+    prendaRed?: PaletteOptions["primary"]
+    prendaYellow?: PaletteOptions["primary"]
+    prendaGreen?: PaletteOptions["primary"]
+    prendaMagenta?: PaletteOptions["primary"]
+    prendaPurple?: PaletteOptions["primary"]
   }
 }
 // #endregion Custom palette
@@ -108,35 +111,35 @@ declare module "@mui/material/styles" {
 // #region Palette Color
 declare module "@mui/material/styles" {
   interface PaletteColor {
-    0?: string;
-    40?: string;
-    60?: string;
-    70?: string;
-    80?: string;
-    90?: string;
-    100?: string;
-    200?: string;
-    300?: string;
-    400?: string;
-    500?: string;
-    600?: string;
-    700?: string;
+    0?: string
+    40?: string
+    60?: string
+    70?: string
+    80?: string
+    90?: string
+    100?: string
+    200?: string
+    300?: string
+    400?: string
+    500?: string
+    600?: string
+    700?: string
   }
 
   interface SimplePaletteColorOptions {
-    0?: string;
-    40?: string;
-    60?: string;
-    70?: string;
-    80?: string;
-    90?: string;
-    100?: string;
-    200?: string;
-    300?: string;
-    400?: string;
-    500?: string;
-    600?: string;
-    700?: string;
+    0?: string
+    40?: string
+    60?: string
+    70?: string
+    80?: string
+    90?: string
+    100?: string
+    200?: string
+    300?: string
+    400?: string
+    500?: string
+    600?: string
+    700?: string
   }
 }
 // #endregion Palette Color
@@ -144,7 +147,7 @@ declare module "@mui/material/styles" {
 // #region SvgIcon variants
 declare module "@mui/material/SvgIcon" {
   interface SvgIconPropsSizeOverrides {
-    huge: true;
+    huge: true
   }
 }
 // #endregion SvgIcon variants
@@ -154,8 +157,8 @@ export type CreatePrendaThemeOptions = {
    * Base path for hosted font files referenced by CssBaseline.
    * Defaults to "/pds-assets-v1/fonts".
    */
-  fontBasePath?: string;
-};
+  fontBasePath?: string
+}
 
 const fontFaceCss = (fontBasePath: string) => `
   @font-face {
@@ -206,21 +209,21 @@ const fontFaceCss = (fontBasePath: string) => `
     src: local('Poppins-Bold'), local('Poppins-Bold'), url("${fontBasePath}/poppins-bold.woff2") format('woff2');
     unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
   }
-`;
+`
 
 export const createPrendaTheme = (
   options: CreatePrendaThemeOptions = {},
 ): Theme => {
-  const fontBasePath = options.fontBasePath ?? "/pds-assets-v1/fonts";
+  const fontBasePath = options.fontBasePath ?? "/pds-assets-v1/fonts"
 
-  const baseTheme = createTheme();
+  const baseTheme = createTheme()
   // Preserve default shadow tuple typing while customizing a few entries
-  const shadows = [...baseTheme.shadows] as Theme["shadows"];
-  shadows[1] = "0px 1px 1px 0px rgba(9, 30, 66, 0.16)";
-  shadows[2] = "0px 3px 5px 0px rgba(9, 30, 66, 0.16)";
-  shadows[3] = "0px 8px 12px 0px rgba(9, 30, 66, 0.16)";
+  const shadows = [...baseTheme.shadows] as Theme["shadows"]
+  shadows[1] = "0px 1px 1px 0px rgba(9, 30, 66, 0.16)"
+  shadows[2] = "0px 3px 5px 0px rgba(9, 30, 66, 0.16)"
+  shadows[3] = "0px 8px 12px 0px rgba(9, 30, 66, 0.16)"
   shadows[24] =
-    "0px 1px 5px -7px rgba(9, 30, 66, 0.16), 0px 14px 30px 4px rgba(9, 30, 66, 0.16)";
+    "0px 1px 5px -7px rgba(9, 30, 66, 0.16), 0px 14px 30px 4px rgba(9, 30, 66, 0.16)"
 
   return createTheme({
     cssVariables: true,
@@ -269,14 +272,26 @@ export const createPrendaTheme = (
       },
       prendaGreen: {
         100: PrendaGreens[100],
+        200: PrendaGreens[200],
+        300: PrendaGreens[300],
         700: PrendaGreens[700],
       },
       prendaMagenta: {
+        100: PrendaMagentas[100],
         200: PrendaMagentas[200],
         300: PrendaMagentas[300],
         400: PrendaMagentas[400],
         500: PrendaMagentas[500],
         700: PrendaMagentas[700],
+      },
+      prendaPurple: {
+        100: PrendaPurple[100],
+        200: PrendaPurple[200],
+        300: PrendaPurple[300],
+        400: PrendaPurple[400],
+        500: PrendaPurple[500],
+        600: PrendaPurple[600],
+        700: PrendaPurple[700],
       },
     },
     shape: {
@@ -976,9 +991,9 @@ export const createPrendaTheme = (
       },
     },
     shadows,
-  });
-};
+  })
+}
 
-export const prendaTheme = createPrendaTheme();
-export type PrendaTheme = typeof prendaTheme;
-export default prendaTheme;
+export const prendaTheme = createPrendaTheme()
+export type PrendaTheme = typeof prendaTheme
+export default prendaTheme

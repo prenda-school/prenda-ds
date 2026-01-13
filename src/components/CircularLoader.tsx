@@ -1,4 +1,4 @@
-import { CircularProgress, styled } from '@mui/material'
+import { CircularProgress, styled } from "@mui/material"
 
 export const CircularLoader = () => (
   <LoaderContainer>
@@ -6,7 +6,7 @@ export const CircularLoader = () => (
   </LoaderContainer>
 )
 
-const LoaderContainer = styled('div')`
+const LoaderContainer = styled("div")`
   display: flex;
   justify-content: center;
   width: 100%;
