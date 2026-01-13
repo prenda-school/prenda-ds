@@ -1,5 +1,5 @@
-import { styled } from '@mui/material'
-import type { CSSProperties } from 'react'
+import { styled } from "@mui/material"
+import type { CSSProperties } from "react"
 
 export type LoadingAnimationProps = {
   imgStyle?: CSSProperties
@@ -17,7 +17,7 @@ export const LoadingAnimation = ({
   </LoaderContainer>
 )
 
-const LoaderContainer = styled('div')`
+const LoaderContainer = styled("div")`
   width: 100%;
   margin-top: 100px;
   display: block;
@@ -36,7 +36,7 @@ const MonogramSpinner = ({
   light: boolean
   style?: CSSProperties
 }) => {
-  const fill = light ? '#fff' : '#004e75'
+  const fill = light ? "#fff" : "#004e75"
 
   return (
     <svg

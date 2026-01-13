@@ -1,5 +1,5 @@
-import { Dialog, IconButton, useTheme } from '@mui/material'
-import { Cross } from '@prenda-school/prenda-icons'
+import { Dialog, IconButton, useTheme } from "@mui/material"
+import { Cross } from "@prenda-school/prenda-icons"
 
 export interface ModalDialogProps {
   open: boolean
@@ -7,7 +7,7 @@ export interface ModalDialogProps {
   closeable?: boolean
   children: React.ReactNode
   maxWidth?: number
-  scroll?: 'paper' | 'body'
+  scroll?: "paper" | "body"
 }
 
 export const ModalDialog = ({
@@ -16,7 +16,7 @@ export const ModalDialog = ({
   closeable = true,
   children,
   maxWidth = 640,
-  scroll = 'paper',
+  scroll = "paper",
 }: ModalDialogProps) => {
   const theme = useTheme()
 
@@ -27,11 +27,11 @@ export const ModalDialog = ({
       aria-labelledby="modal"
       scroll={scroll}
       sx={{
-        '& .MuiDialog-paper': {
+        "& .MuiDialog-paper": {
           padding: 0,
-          width: '100%',
+          width: "100%",
           maxWidth,
-          borderRadius: '8px',
+          borderRadius: "8px",
         },
       }}
     >
@@ -40,15 +40,15 @@ export const ModalDialog = ({
           aria-label="close"
           onClick={onClose}
           sx={{
-            position: 'absolute',
+            position: "absolute",
             right: 20,
             top: 20,
             zIndex: 10,
             color: theme.palette.prendaGrey[500],
             backgroundColor: theme.palette.prendaGrey[0],
-            boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.25)',
+            boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.25)",
             padding: 0.5,
-            '&:hover': {
+            "&:hover": {
               backgroundColor: theme.palette.prendaGrey[90],
             },
           }}

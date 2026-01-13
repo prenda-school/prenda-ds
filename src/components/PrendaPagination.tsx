@@ -1,4 +1,4 @@
-import { Pagination, type PaginationProps } from '@mui/material'
+import { Pagination, type PaginationProps } from "@mui/material"
 
 export const PrendaPagination = ({ ...props }: PaginationProps) => {
   return (
@@ -6,7 +6,7 @@ export const PrendaPagination = ({ ...props }: PaginationProps) => {
       variant="outlined"
       shape="rounded"
       size="large"
-      sx={{ marginLeft: 'auto', mt: 0.5 }}
+      sx={{ marginLeft: "auto", mt: 0.5 }}
       {...props}
     />
   )

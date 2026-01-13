@@ -1,6 +1,6 @@
 import { CssBaseline } from "@mui/material"
-import { Theme, ThemeProvider } from "@mui/material/styles"
-import React, { PropsWithChildren } from "react"
+import { type Theme, ThemeProvider } from "@mui/material/styles"
+import React, { type PropsWithChildren } from "react"
 import { prendaTheme } from "./theme"
 
 export type PrendaThemeProviderProps = PropsWithChildren<{
