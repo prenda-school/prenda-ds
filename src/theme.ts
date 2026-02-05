@@ -70,6 +70,7 @@ declare module "@mui/material/Button" {
     primary: true
     stroke: true
     ghost: true
+    destructive: true
   }
 
   interface ButtonPropsColorOverrides {
@@ -212,7 +213,7 @@ const fontFaceCss = (fontBasePath: string) => `
 `
 
 export const createPrendaTheme = (
-  options: CreatePrendaThemeOptions = {},
+  options: CreatePrendaThemeOptions = {}
 ): Theme => {
   const fontBasePath = options.fontBasePath ?? "/pds-assets-v1/fonts"
 
@@ -441,6 +442,20 @@ export const createPrendaTheme = (
               },
               "&.Mui-disabled": {
                 border: `1px solid ${PrendaGreys[0]}`,
+              },
+            },
+          },
+          {
+            props: { variant: "destructive" },
+            style: {
+              backgroundColor: PrendaReds[700],
+              color: PrendaGreys[0],
+              border: `1px solid ${PrendaReds[700]}`,
+              "&:hover": {
+                backgroundColor: PrendaReds[500],
+              },
+              "&:active": {
+                backgroundColor: PrendaReds[700],
               },
             },
           },
@@ -960,7 +975,7 @@ export const createPrendaTheme = (
               ["background-color", "box-shadow"],
               {
                 duration: 300,
-              },
+              }
             ),
           },
         },
