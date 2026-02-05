@@ -1,0 +1,6 @@
+.git/
+.next/
+node_modules/
+.vscode/
+.eslintrc
+package-lock.json
