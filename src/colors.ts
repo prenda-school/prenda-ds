@@ -29,6 +29,7 @@ export const PrendaReds = {
   500: "#EB3741", // danger
   400: "#FF7452",
   300: "#FF8F73",
+  200: "#FFBDAD",
   100: "#FFEBE6",
 }
 

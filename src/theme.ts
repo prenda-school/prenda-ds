@@ -213,7 +213,7 @@ const fontFaceCss = (fontBasePath: string) => `
 `
 
 export const createPrendaTheme = (
-  options: CreatePrendaThemeOptions = {}
+  options: CreatePrendaThemeOptions = {},
 ): Theme => {
   const fontBasePath = options.fontBasePath ?? "/pds-assets-v1/fonts"
 
@@ -257,6 +257,7 @@ export const createPrendaTheme = (
       },
       prendaRed: {
         100: PrendaReds[100],
+        200: PrendaReds[200],
         300: PrendaReds[300],
         400: PrendaReds[400],
         500: PrendaReds[500],
@@ -975,7 +976,7 @@ export const createPrendaTheme = (
               ["background-color", "box-shadow"],
               {
                 duration: 300,
-              }
+              },
             ),
           },
         },
