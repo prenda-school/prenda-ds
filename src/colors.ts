@@ -6,7 +6,7 @@ export const PrendaBlues = {
   300: "#4C9AFF", // rgba(76, 154, 255, 1) Progress/300
   200: "#B3D4FF", // rgba(179, 212, 255, 1)
   100: "#DEEBFF", // rgba(222, 235, 255, 1)
-};
+}
 
 export const PrendaGreys = {
   600: "#091E42",
@@ -22,7 +22,7 @@ export const PrendaGreys = {
   50: "#091e4214", // rgba(9, 30, 66, 0.08)
   40: "#FAFAFA",
   0: "#FFFFFF",
-};
+}
 
 export const PrendaReds = {
   700: "#A72100",
@@ -31,7 +31,7 @@ export const PrendaReds = {
   300: "#FF8F73",
   200: "#FFBDAD",
   100: "#FFEBE6",
-};
+}
 
 export const PrendaYellows = {
   700: "#FF8B00",
@@ -41,19 +41,19 @@ export const PrendaYellows = {
   300: "#FFE380",
   200: "#FFF0B3",
   100: "#FFFAE6",
-};
+}
 
 export const PrendaGreens = {
   700: "#006644",
   300: "#79F2C0",
   200: "#ABF5D1",
   100: "#E3FCEF",
-};
+}
 
 export const PrendaTeals = {
   200: "#B3F5FF",
   100: "#E6FCFF",
-};
+}
 
 export const PrendaMagentas = {
   700: "#B2103A",
@@ -62,7 +62,7 @@ export const PrendaMagentas = {
   300: "#F399AF",
   200: "#F7D2DA",
   100: "#FFF1F4",
-};
+}
 
 export const PrendaPurple = {
   700: "#403294",
@@ -72,4 +72,4 @@ export const PrendaPurple = {
   300: "#998DD9",
   200: "#C0B6F2",
   100: "#EAE6FF",
-};
+}
