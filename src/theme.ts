@@ -929,6 +929,9 @@ export const createPrendaTheme = (
             "&.Mui-checked": {
               color: PrendaBlues[600],
             },
+            "&.MuiCheckbox-indeterminate": {
+              color: PrendaBlues[600],
+            },
           },
         },
       },
