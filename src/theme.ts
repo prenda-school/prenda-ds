@@ -688,7 +688,12 @@ export const createPrendaTheme = (
       MuiStepConnector: {
         styleOverrides: {
           root: { marginLeft: 20 },
-          lineVertical: { minHeight: 36, borderColor: PrendaGreys[80] },
+          vertical: {
+            "& .MuiStepConnector-line": {
+              minHeight: 36,
+              borderColor: PrendaGreys[80],
+            },
+          },
         },
       },
       MuiStepIcon: {
@@ -770,7 +775,7 @@ export const createPrendaTheme = (
       },
       MuiTabs: {
         styleOverrides: {
-          flexContainer: {
+          list: {
             borderBottom: `2px solid ${PrendaGreys[80]}`,
           },
           indicator: {
@@ -840,8 +845,8 @@ export const createPrendaTheme = (
             error: React.createElement(AlertOctagon),
             success: React.createElement(CheckCircle),
           },
-          components: {
-            CloseIcon: Cross,
+          slots: {
+            closeIcon: Cross,
           },
         },
         styleOverrides: {
@@ -860,49 +865,61 @@ export const createPrendaTheme = (
               height: 24,
             },
           },
-          standardInfo: {
-            backgroundColor: PrendaBlues[100],
-            border: `1px solid ${PrendaBlues[600]}`,
-            "& .MuiAlert-icon": {
-              color: PrendaBlues[600],
-            },
-            "& .MuiAlert-action": {
-              color: PrendaBlues[600],
-            },
-          },
-          standardWarning: {
-            backgroundColor: PrendaYellows[100],
-            border: `1px solid ${PrendaYellows[700]}`,
-            "& .MuiAlert-icon": {
-              color: PrendaYellows[700],
-            },
-            "& .MuiAlert-action": {
-              color: PrendaYellows[700],
-            },
-          },
-          standardError: {
-            backgroundColor: PrendaReds[100],
-            border: `1px solid ${PrendaReds[700]}`,
-            borderColor: PrendaReds[700],
-            "& .MuiAlert-icon": {
-              color: PrendaReds[700],
-            },
-            "& .MuiAlert-action": {
-              color: PrendaReds[700],
-            },
-          },
-          standardSuccess: {
-            backgroundColor: PrendaGreens[100],
-            border: `1px solid ${PrendaGreens[700]}`,
-            borderColor: PrendaGreens[700],
-            "& .MuiAlert-icon": {
-              color: PrendaGreens[700],
-            },
-            "& .MuiAlert-action": {
-              color: PrendaGreens[700],
-            },
-          },
         },
+        variants: [
+          {
+            props: { variant: "standard", severity: "info" },
+            style: {
+              backgroundColor: PrendaBlues[100],
+              border: `1px solid ${PrendaBlues[600]}`,
+              "& .MuiAlert-icon": {
+                color: PrendaBlues[600],
+              },
+              "& .MuiAlert-action": {
+                color: PrendaBlues[600],
+              },
+            },
+          },
+          {
+            props: { variant: "standard", severity: "warning" },
+            style: {
+              backgroundColor: PrendaYellows[100],
+              border: `1px solid ${PrendaYellows[700]}`,
+              "& .MuiAlert-icon": {
+                color: PrendaYellows[700],
+              },
+              "& .MuiAlert-action": {
+                color: PrendaYellows[700],
+              },
+            },
+          },
+          {
+            props: { variant: "standard", severity: "error" },
+            style: {
+              backgroundColor: PrendaReds[100],
+              border: `1px solid ${PrendaReds[700]}`,
+              "& .MuiAlert-icon": {
+                color: PrendaReds[700],
+              },
+              "& .MuiAlert-action": {
+                color: PrendaReds[700],
+              },
+            },
+          },
+          {
+            props: { variant: "standard", severity: "success" },
+            style: {
+              backgroundColor: PrendaGreens[100],
+              border: `1px solid ${PrendaGreens[700]}`,
+              "& .MuiAlert-icon": {
+                color: PrendaGreens[700],
+              },
+              "& .MuiAlert-action": {
+                color: PrendaGreens[700],
+              },
+            },
+          },
+        ],
       },
       MuiCheckbox: {
         styleOverrides: {
