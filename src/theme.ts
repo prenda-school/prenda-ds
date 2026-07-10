@@ -856,10 +856,6 @@ export const createPrendaTheme = (
             padding: "16px 24px",
           },
           action: {
-            width: 24,
-            height: 24,
-            padding: 0,
-            margin: 0,
             ".MuiSvgIcon-root": {
               width: 24,
               height: 24,

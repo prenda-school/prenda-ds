@@ -1,6 +1,6 @@
 {
   "name": "@prenda-school/prenda-ds",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Prenda design system theme and utilities",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
