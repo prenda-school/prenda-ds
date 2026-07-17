@@ -33,8 +33,11 @@ export const ModalDialog = ({
         "& .MuiDialog-paper": {
           padding: 0,
           width: "100%",
-          maxWidth,
-          borderRadius: "8px",
+          // In fullScreen mode, defer to MUI's paperFullScreen styles —
+          // this sx outranks them, so clamping width or rounding corners
+          // here would visibly break fullscreen dialogs.
+          maxWidth: fullScreen ? "100%" : maxWidth,
+          borderRadius: fullScreen ? 0 : "8px",
         },
       }}
     >

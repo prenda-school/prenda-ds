@@ -25,6 +25,7 @@ export type {
   ToastPlacement,
   ToastSeverity,
   ToastsContextValue,
+  ToastsEnqueue,
   ToastsProviderProps,
 } from "./components/Toasts"
 export { CheckboxField } from "./components/CheckboxField"

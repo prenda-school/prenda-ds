@@ -73,6 +73,7 @@ export interface ToastEnqueueOptions {
   placement?: ToastPlacement
   /**
    * The severity of the toast, controlling its color and icon.
+   * @default 'info'
    */
   severity?: ToastSeverity
 }
@@ -104,7 +105,8 @@ export interface ToastsContextValue {
 
 export interface ToastsProviderProps extends PropsWithChildren {
   /**
-   * The limit of toasts shown at once; extras queue up.
+   * The maximum number of toasts shown at once; the oldest is dismissed to
+   * make room for new ones.
    * @default 3
    */
   limit?: number
@@ -123,7 +125,7 @@ const Toast = forwardRef<HTMLDivElement, CustomContentProps & ToastExtraProps>(
     return (
       <SnackbarContent ref={ref}>
         <Alert
-          severity={variant === "default" ? undefined : variant}
+          severity={variant === "default" ? "info" : variant}
           icon={icon}
           action={
             closeable ? (
