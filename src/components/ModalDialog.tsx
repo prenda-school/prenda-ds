@@ -8,9 +8,6 @@ export interface ModalDialogProps {
   children: React.ReactNode
   maxWidth?: number
   scroll?: "paper" | "body"
-  /**
-   * If `true`, the dialog takes up the full screen.
-   */
   fullScreen?: boolean
 }
 

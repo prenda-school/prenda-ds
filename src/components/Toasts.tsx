@@ -1,22 +1,51 @@
-import { Alert, type AlertProps, Box, IconButton, Slide } from "@mui/material"
+import { Alert, type AlertProps, IconButton } from "@mui/material"
 import { Cross } from "@prenda-school/prenda-icons"
+import {
+  type CustomContentProps,
+  SnackbarContent,
+  type SnackbarKey,
+  type SnackbarOrigin,
+  SnackbarProvider,
+  useSnackbar,
+} from "notistack"
 import {
   type PropsWithChildren,
   type ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
+  forwardRef,
   useMemo,
-  useRef,
-  useState,
 } from "react"
 
-export type ToastId = string | number
+export type ToastId = SnackbarKey
 
 export type ToastSeverity = "error" | "info" | "success" | "warning"
 
 export type ToastPlacement = "bottom-left" | "bottom-center" | "bottom-right"
+
+// Must be a `type` alias, not an `interface`: notistack's VariantOverrides
+// mechanism requires each variant's extra props to be assignable to
+// `Record<string, unknown>`, which interfaces are not (they can be augmented,
+// so TS withholds an implicit index signature). A type alias satisfies it.
+type ToastExtraProps = {
+  /**
+   * Whether a close button is shown at the end of the toast.
+   * @default true
+   */
+  closeable?: boolean
+  /**
+   * Override the severity icon.
+   */
+  icon?: AlertProps["icon"]
+}
+
+declare module "notistack" {
+  interface VariantOverrides {
+    default: ToastExtraProps
+    error: ToastExtraProps
+    info: ToastExtraProps
+    success: ToastExtraProps
+    warning: ToastExtraProps
+  }
+}
 
 export interface ToastEnqueueOptions {
   /**
@@ -73,172 +102,105 @@ export interface ToastsContextValue {
   enqueue: ToastsEnqueue
 }
 
-const ToastsContext = createContext<ToastsContextValue | null>(null)
-
 export interface ToastsProviderProps extends PropsWithChildren {
   /**
-   * The limit of toasts shown at once per placement; extras queue up.
+   * The limit of toasts shown at once; extras queue up.
    * @default 3
    */
   limit?: number
 }
 
-interface ToastRecord {
-  autoHideDuration: number | null
-  children: ReactNode
-  closeable: boolean
-  icon?: AlertProps["icon"]
-  id: ToastId
-  placement: ToastPlacement
-  severity?: ToastSeverity
+const PLACEMENT_TO_ORIGIN: Record<ToastPlacement, SnackbarOrigin> = {
+  "bottom-left": { vertical: "bottom", horizontal: "left" },
+  "bottom-center": { vertical: "bottom", horizontal: "center" },
+  "bottom-right": { vertical: "bottom", horizontal: "right" },
 }
 
-const PLACEMENTS: ToastPlacement[] = [
-  "bottom-left",
-  "bottom-center",
-  "bottom-right",
-]
+const Toast = forwardRef<HTMLDivElement, CustomContentProps & ToastExtraProps>(
+  ({ id, message, variant, closeable = true, icon }, ref) => {
+    const { closeSnackbar } = useSnackbar()
 
-const placementSx = (placement: ToastPlacement) =>
-  ({
-    "bottom-left": { left: 24, alignItems: "flex-start" },
-    "bottom-center": {
-      left: "50%",
-      transform: "translateX(-50%)",
-      alignItems: "center",
-    },
-    "bottom-right": { right: 24, alignItems: "flex-end" },
-  })[placement]
+    return (
+      <SnackbarContent ref={ref}>
+        <Alert
+          severity={variant === "default" ? undefined : variant}
+          icon={icon}
+          action={
+            closeable ? (
+              <IconButton
+                aria-label="close"
+                size="small"
+                color="inherit"
+                onClick={() => closeSnackbar(id)}
+              >
+                <Cross fontSize="small" />
+              </IconButton>
+            ) : undefined
+          }
+          sx={{ width: "100%", boxShadow: 3 }}
+        >
+          {message}
+        </Alert>
+      </SnackbarContent>
+    )
+  },
+)
 
-const ToastItem = ({
-  toast,
-  onClose,
-}: {
-  toast: ToastRecord
-  onClose: (id: ToastId) => void
-}) => {
-  const { autoHideDuration, id } = toast
-
-  useEffect(() => {
-    if (autoHideDuration === null) return
-    const timer = setTimeout(() => onClose(id), autoHideDuration)
-    return () => clearTimeout(timer)
-  }, [autoHideDuration, id, onClose])
-
-  return (
-    <Slide direction="up" in>
-      <Alert
-        severity={toast.severity}
-        icon={toast.icon}
-        action={
-          toast.closeable ? (
-            <IconButton
-              aria-label="close"
-              size="small"
-              color="inherit"
-              onClick={() => onClose(toast.id)}
-            >
-              <Cross fontSize="small" />
-            </IconButton>
-          ) : undefined
-        }
-        sx={{ pointerEvents: "auto", boxShadow: 3 }}
-      >
-        {toast.children}
-      </Alert>
-    </Slide>
-  )
-}
+Toast.displayName = "Toast"
 
 export const ToastsProvider = ({
   children,
   limit = 3,
-}: ToastsProviderProps) => {
-  const [toasts, setToasts] = useState<ToastRecord[]>([])
-  const counter = useRef(0)
+}: ToastsProviderProps) => (
+  <SnackbarProvider
+    maxSnack={limit}
+    autoHideDuration={5000}
+    anchorOrigin={PLACEMENT_TO_ORIGIN["bottom-left"]}
+    Components={{
+      default: Toast,
+      error: Toast,
+      info: Toast,
+      success: Toast,
+      warning: Toast,
+    }}
+  >
+    {children}
+  </SnackbarProvider>
+)
 
-  const close = useCallback((id: ToastId) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id))
-  }, [])
+export const useToasts = (): ToastsContextValue => {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-  const closeAll = useCallback(() => {
-    setToasts([])
-  }, [])
-
-  const enqueue = useMemo<ToastsEnqueue>(() => {
-    const push: EnqueueFn = (content, options = {}) => {
-      counter.current += 1
-      const id = options.id ?? `toast-${counter.current}`
-      setToasts((prev) => [
-        ...prev.filter((toast) => toast.id !== id),
-        {
-          autoHideDuration:
-            options.autoHideDuration === undefined
-              ? 5000
-              : options.autoHideDuration,
-          children: content,
-          closeable: options.closeable ?? true,
-          icon: options.icon,
-          id,
-          placement: options.placement ?? "bottom-left",
-          severity: options.severity,
-        },
-      ])
-      return id
-    }
+  return useMemo(() => {
+    const push: EnqueueFn = (content, options = {}) =>
+      enqueueSnackbar(content, {
+        variant: options.severity ?? "default",
+        key: options.id,
+        persist: options.autoHideDuration === null,
+        autoHideDuration:
+          options.autoHideDuration === null
+            ? undefined
+            : options.autoHideDuration,
+        anchorOrigin: options.placement
+          ? PLACEMENT_TO_ORIGIN[options.placement]
+          : undefined,
+        closeable: options.closeable,
+        icon: options.icon,
+      })
     const withSeverity =
       (severity: ToastSeverity): EnqueueFn =>
       (content, options = {}) =>
         push(content, { ...options, severity })
-    return Object.assign(push, {
+    const enqueue = Object.assign(push, {
       error: withSeverity("error"),
       info: withSeverity("info"),
       success: withSeverity("success"),
       warning: withSeverity("warning"),
     })
-  }, [])
-
-  const value = useMemo(
-    () => ({ close, closeAll, enqueue }),
-    [close, closeAll, enqueue],
-  )
-
-  return (
-    <ToastsContext.Provider value={value}>
-      {children}
-      {PLACEMENTS.map((placement) => {
-        const visible = toasts
-          .filter((toast) => toast.placement === placement)
-          .slice(0, limit)
-        if (visible.length === 0) return null
-        return (
-          <Box
-            key={placement}
-            sx={{
-              position: "fixed",
-              bottom: 24,
-              zIndex: (theme) => theme.zIndex.snackbar,
-              display: "flex",
-              flexDirection: "column",
-              gap: 1,
-              pointerEvents: "none",
-              ...placementSx(placement),
-            }}
-          >
-            {visible.map((toast) => (
-              <ToastItem key={toast.id} toast={toast} onClose={close} />
-            ))}
-          </Box>
-        )
-      })}
-    </ToastsContext.Provider>
-  )
-}
-
-export const useToasts = (): ToastsContextValue => {
-  const context = useContext(ToastsContext)
-  if (!context) {
-    throw new Error("useToasts must be used within a ToastsProvider")
-  }
-  return context
+    return {
+      close: (id: ToastId) => closeSnackbar(id),
+      closeAll: () => closeSnackbar(),
+      enqueue,
+    }
+  }, [enqueueSnackbar, closeSnackbar])
 }
