@@ -18,4 +18,15 @@ export { CircularLoader } from "./components/CircularLoader"
 export { LoadingAnimation } from "./components/LoadingAnimation"
 export type { LoadingAnimationProps } from "./components/LoadingAnimation"
 export { StyledSelect } from "./components/StyledSelect"
+export { ToastsProvider, useToasts } from "./components/Toasts"
+export type {
+  ToastEnqueueOptions,
+  ToastId,
+  ToastPlacement,
+  ToastSeverity,
+  ToastsContextValue,
+  ToastsProviderProps,
+} from "./components/Toasts"
+export { CheckboxField } from "./components/CheckboxField"
+export type { CheckboxFieldProps } from "./components/CheckboxField"
 export { prendaTheme as default } from "./theme"

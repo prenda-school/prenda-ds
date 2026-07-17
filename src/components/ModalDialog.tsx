@@ -8,6 +8,10 @@ export interface ModalDialogProps {
   children: React.ReactNode
   maxWidth?: number
   scroll?: "paper" | "body"
+  /**
+   * If `true`, the dialog takes up the full screen.
+   */
+  fullScreen?: boolean
 }
 
 export const ModalDialog = ({
@@ -17,6 +21,7 @@ export const ModalDialog = ({
   children,
   maxWidth = 640,
   scroll = "paper",
+  fullScreen = false,
 }: ModalDialogProps) => {
   const theme = useTheme()
 
@@ -26,6 +31,7 @@ export const ModalDialog = ({
       onClose={onClose}
       aria-labelledby="modal"
       scroll={scroll}
+      fullScreen={fullScreen}
       sx={{
         "& .MuiDialog-paper": {
           padding: 0,
