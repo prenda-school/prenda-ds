@@ -26,6 +26,7 @@ export const PrendaGreys = {
 
 export const PrendaReds = {
   700: "#A72100",
+  600: "#DE350B",
   500: "#EB3741", // danger
   400: "#FF7452",
   300: "#FF8F73",
@@ -62,6 +63,11 @@ export const PrendaMagentas = {
   300: "#F399AF",
   200: "#F7D2DA",
   100: "#FFF1F4",
+}
+
+export const PrendaBrand = {
+  blue: "#0A4872",
+  lightBlue: "#D7F3FF",
 }
 
 export const PrendaPurple = {

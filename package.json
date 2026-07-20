@@ -1,6 +1,6 @@
 {
   "name": "@prenda-school/prenda-ds",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Prenda design system theme and utilities",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -26,7 +26,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@prenda-school/prenda-icons": "^2.0.0"
+    "@prenda-school/prenda-icons": "^2.0.0",
+    "notistack": "^3.0.2"
   },
   "peerDependencies": {
     "@mui/material": "^9.0.0",

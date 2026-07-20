@@ -10,6 +10,7 @@ import {
 import React from "react"
 import {
   PrendaBlues,
+  PrendaBrand,
   PrendaGreens,
   PrendaGreys,
   PrendaMagentas,
@@ -23,6 +24,7 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     label: React.CSSProperties
     description: React.CSSProperties
+    T14: React.CSSProperties
     T18: React.CSSProperties
     T22: React.CSSProperties
     T28: React.CSSProperties
@@ -32,6 +34,7 @@ declare module "@mui/material/styles" {
   interface TypographyVariantsOptions {
     label?: React.CSSProperties
     description?: React.CSSProperties
+    T14?: React.CSSProperties
     T18?: React.CSSProperties
     T22?: React.CSSProperties
     T28?: React.CSSProperties
@@ -58,6 +61,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     label: true
     description: true
+    T14: true
     T18: true
     T22: true
     T28: true
@@ -95,6 +99,10 @@ declare module "@mui/material/styles" {
     prendaGreen: Palette["primary"]
     prendaMagenta: Palette["primary"]
     prendaPurple: Palette["primary"]
+    brand: {
+      blue: string
+      lightBlue: string
+    }
   }
 
   interface PaletteOptions {
@@ -105,6 +113,10 @@ declare module "@mui/material/styles" {
     prendaGreen?: PaletteOptions["primary"]
     prendaMagenta?: PaletteOptions["primary"]
     prendaPurple?: PaletteOptions["primary"]
+    brand?: {
+      blue?: string
+      lightBlue?: string
+    }
   }
 }
 // #endregion Custom palette
@@ -261,6 +273,7 @@ export const createPrendaTheme = (
         300: PrendaReds[300],
         400: PrendaReds[400],
         500: PrendaReds[500],
+        600: PrendaReds[600],
         700: PrendaReds[700],
       },
       prendaYellow: {
@@ -295,6 +308,10 @@ export const createPrendaTheme = (
         600: PrendaPurple[600],
         700: PrendaPurple[700],
       },
+      brand: {
+        blue: PrendaBrand.blue,
+        lightBlue: PrendaBrand.lightBlue,
+      },
     },
     shape: {
       borderRadius: 8,
@@ -312,6 +329,14 @@ export const createPrendaTheme = (
         fontWeight: 400,
         fontSize: 14,
         lineHeight: "20px",
+      },
+      T14: {
+        fontFamily: "Poppins-Bold",
+        fontSize: 14,
+        fontWeight: 700,
+        lineHeight: "20px",
+        letterSpacing: "0.04em",
+        textTransform: "uppercase",
       },
       T18: {
         fontFamily: "Poppins-SemiBold",
@@ -347,6 +372,7 @@ export const createPrendaTheme = (
           variantMapping: {
             label: "p",
             description: "p",
+            T14: "span",
             T18: "p",
             T22: "p",
             T28: "p",
