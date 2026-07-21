@@ -241,6 +241,12 @@ export const createPrendaTheme = (
   return createTheme({
     cssVariables: true,
     palette: {
+      // Spark parity: alias tokens text.body / text.subdued / text.disabled
+      text: {
+        primary: PrendaGreys[500],
+        secondary: PrendaGreys[400],
+        disabled: PrendaGreys[100],
+      },
       action: {
         disabled: PrendaGreys[100],
       },
@@ -324,12 +330,15 @@ export const createPrendaTheme = (
         fontWeight: 600,
         fontSize: 16,
         lineHeight: "20px",
+        color: PrendaGreys[500],
       },
       description: {
         fontWeight: 400,
         fontSize: 14,
         lineHeight: "20px",
+        color: PrendaGreys[500],
       },
+      // Spark parity: heading variants used text.heading (neutral 600)
       T14: {
         fontFamily: "Poppins-Bold",
         fontSize: 14,
@@ -337,30 +346,35 @@ export const createPrendaTheme = (
         lineHeight: "20px",
         letterSpacing: "0.04em",
         textTransform: "uppercase",
+        color: PrendaGreys[600],
       },
       T18: {
         fontFamily: "Poppins-SemiBold",
         fontSize: 18,
         fontWeight: 600,
         lineHeight: "28px",
+        color: PrendaGreys[600],
       },
       T22: {
         fontFamily: "Poppins-SemiBold",
         fontSize: 22,
         fontWeight: 600,
         lineHeight: "28px",
+        color: PrendaGreys[600],
       },
       T28: {
         fontFamily: "Poppins-Bold",
         fontSize: 28,
         fontWeight: 700,
         lineHeight: "36px",
+        color: PrendaGreys[600],
       },
       T32: {
         fontFamily: "Poppins-Bold",
         fontSize: 32,
         fontWeight: 700,
         lineHeight: "40px",
+        color: PrendaGreys[600],
       },
     },
     components: {
@@ -370,13 +384,29 @@ export const createPrendaTheme = (
       MuiTypography: {
         defaultProps: {
           variantMapping: {
-            label: "p",
+            // Spark parity: label rendered inline (span) so it can be used
+            // mid-sentence, e.g. "Start a <label>multi-family microschool</label>"
+            label: "span",
             description: "p",
             T14: "span",
             T18: "p",
             T22: "p",
             T28: "p",
             T32: "p",
+          },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          // Spark parity: spark's Card was a vertical flex container, so
+          // consumer `gap` rules keep working after migration. overflow stays
+          // visible (MUI defaults to hidden, which lets a height-constrained
+          // flex parent shrink the card and clip its content instead of
+          // letting the page scroll).
+          root: {
+            display: "flex",
+            flexDirection: "column",
+            overflow: "visible",
           },
         },
       },
@@ -569,11 +599,6 @@ export const createPrendaTheme = (
         },
       },
       MuiDialog: {
-        styleOverrides: {
-          paper: {
-            padding: "12px 0 24px",
-          },
-        },
         defaultProps: {
           slotProps: {
             backdrop: {
@@ -584,6 +609,8 @@ export const createPrendaTheme = (
           },
         },
       },
+      // Spark parity: modal spacing mirrors spark's ModalDialogTitle/Content/
+      // Actions (paper itself has no padding; each region brings its own)
       MuiDialogTitle: {
         styleOverrides: {
           root: {
@@ -592,13 +619,17 @@ export const createPrendaTheme = (
             fontWeight: 600,
             lineHeight: "28px",
             color: PrendaGreys[500],
+            padding: "28px 24px 8px",
           },
         },
       },
       MuiDialogContent: {
         styleOverrides: {
           root: {
-            paddingBottom: 16,
+            padding: "8px 24px",
+            "&:first-of-type": {
+              paddingTop: 20,
+            },
           },
         },
       },
@@ -612,7 +643,7 @@ export const createPrendaTheme = (
       MuiDialogActions: {
         styleOverrides: {
           root: {
-            padding: "0 24px",
+            padding: "8px 24px 24px 24px",
             "& > :not(style) ~ :not(style)": {
               marginLeft: 0,
             },
@@ -620,20 +651,29 @@ export const createPrendaTheme = (
           },
         },
       },
+      // Spark parity: mirrors spark's alpha Input (white box, 1px grey border,
+      // grey hover fill, 1px blue border + 4px blue ring on focus)
       MuiOutlinedInput: {
         styleOverrides: {
           notchedOutline: {
-            borderColor: PrendaGreys[100],
+            borderColor: PrendaGreys[90],
+            borderWidth: 1,
           },
           root: {
+            backgroundColor: PrendaGreys[0],
             color: PrendaGreys[500],
+            lineHeight: "24px",
             padding: 0,
             borderRadius: 4,
+            "&:hover:not(.Mui-focused):not(.Mui-disabled)": {
+              backgroundColor: PrendaGreys[60],
+            },
             [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: PrendaGreys[90],
             },
             [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: PrendaBlues[600],
+              borderWidth: 1,
               boxShadow: `0px 0px 0px 4px ${PrendaBlues[100]}`,
             },
             [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
@@ -648,9 +688,13 @@ export const createPrendaTheme = (
             },
           },
           input: {
-            padding: "13.5px 16px",
+            padding: "12px 16px",
+            height: "unset",
             color: PrendaGreys[500],
-            backgroundColor: PrendaGreys[60],
+            "&::placeholder": {
+              color: PrendaGreys[400],
+              opacity: 0.87,
+            },
             "&.Mui-disabled": {
               color: PrendaGreys[100],
               WebkitTextFillColor: PrendaGreys[100],
@@ -666,14 +710,59 @@ export const createPrendaTheme = (
             paddingRight: 8,
           },
         },
+        variants: [
+          {
+            props: { size: "small" },
+            style: {
+              fontSize: 14,
+              [`& .${outlinedInputClasses.input}`]: {
+                padding: "6px 8px",
+              },
+            },
+          },
+        ],
+      },
+      // Spark parity: FormControl stacked label/input/helper with an 8px gap
+      MuiFormControl: {
+        styleOverrides: {
+          root: {
+            gap: 8,
+          },
+        },
+      },
+      // Spark parity: labels keep the heading color on focus/error instead of
+      // MUI's default blue/red recolor
+      MuiFormLabel: {
+        styleOverrides: {
+          root: {
+            color: PrendaGreys[600],
+            fontFamily: "Inter-SemiBold",
+            fontWeight: 600,
+            fontSize: 16,
+            lineHeight: "20px",
+            "&.Mui-focused": {
+              color: PrendaGreys[600],
+            },
+            "&.Mui-error": {
+              color: PrendaGreys[600],
+            },
+            "&.Mui-disabled": {
+              color: PrendaGreys[100],
+            },
+          },
+        },
       },
       MuiFormHelperText: {
         styleOverrides: {
           root: {
             fontSize: 14,
             color: PrendaGreys[400],
+            margin: 0,
             "&.Mui-error": {
               color: PrendaReds[700],
+            },
+            "&.Mui-disabled": {
+              color: PrendaGreys[100],
             },
           },
         },
@@ -771,7 +860,10 @@ export const createPrendaTheme = (
               backgroundColor: PrendaGreys[0],
               color: PrendaGreys[90],
             },
-            "::before": { backgroundColor: PrendaGreys[0] },
+            // Remove MUI's divider pseudo-element entirely — painting it a
+            // color leaves a 1px line at top:-1px that covers any border the
+            // consumer puts on the accordion.
+            "::before": { display: "none" },
           },
         },
       },
