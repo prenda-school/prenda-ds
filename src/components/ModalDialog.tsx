@@ -47,8 +47,8 @@ export const ModalDialog = ({
           onClick={onClose}
           sx={{
             position: "absolute",
-            right: 20,
-            top: 20,
+            right: 24,
+            top: 24,
             zIndex: 10,
             color: theme.palette.prendaGrey[500],
             backgroundColor: theme.palette.prendaGrey[0],
