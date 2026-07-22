@@ -679,6 +679,8 @@ export const createPrendaTheme = (
             },
             [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: PrendaReds[700],
+              // pin 1px even when focused — MUI's focus style is 2px
+              borderWidth: 1,
               boxShadow: `0px 0px 0px 4px ${PrendaReds[100]}`,
             },
             [`&.Mui-disabled .${outlinedInputClasses.notchedOutline}`]: {
