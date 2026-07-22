@@ -626,9 +626,11 @@ export const createPrendaTheme = (
       MuiDialogContent: {
         styleOverrides: {
           root: {
-            padding: "8px 24px",
-            "&:first-of-type": {
-              paddingTop: 20,
+            padding: "20px 24px 8px",
+            // MUI zeroes padding-top after a DialogTitle; 8px keeps the
+            // title/content rhythm without doubling up
+            ".MuiDialogTitle-root + &": {
+              paddingTop: 8,
             },
           },
         },
