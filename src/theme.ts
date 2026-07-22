@@ -662,7 +662,6 @@ export const createPrendaTheme = (
             borderWidth: 1,
           },
           root: {
-            backgroundColor: PrendaGreys[0],
             color: PrendaGreys[500],
             lineHeight: "24px",
             padding: 0,
@@ -694,8 +693,8 @@ export const createPrendaTheme = (
             height: "unset",
             color: PrendaGreys[500],
             "&::placeholder": {
-              color: PrendaGreys[400],
-              opacity: 0.87,
+              color: PrendaGreys[100],
+              opacity: 1,
             },
             "&.Mui-disabled": {
               color: PrendaGreys[100],
