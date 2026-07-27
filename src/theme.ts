@@ -330,15 +330,12 @@ export const createPrendaTheme = (
         fontWeight: 600,
         fontSize: 16,
         lineHeight: "20px",
-        color: PrendaGreys[500],
       },
       description: {
         fontWeight: 400,
         fontSize: 14,
         lineHeight: "20px",
-        color: PrendaGreys[500],
       },
-      // Spark parity: heading variants used text.heading (neutral 600)
       T14: {
         fontFamily: "Poppins-Bold",
         fontSize: 14,
@@ -346,35 +343,30 @@ export const createPrendaTheme = (
         lineHeight: "20px",
         letterSpacing: "0.04em",
         textTransform: "uppercase",
-        color: PrendaGreys[600],
       },
       T18: {
         fontFamily: "Poppins-SemiBold",
         fontSize: 18,
         fontWeight: 600,
         lineHeight: "28px",
-        color: PrendaGreys[600],
       },
       T22: {
         fontFamily: "Poppins-SemiBold",
         fontSize: 22,
         fontWeight: 600,
         lineHeight: "28px",
-        color: PrendaGreys[600],
       },
       T28: {
         fontFamily: "Poppins-Bold",
         fontSize: 28,
         fontWeight: 700,
         lineHeight: "36px",
-        color: PrendaGreys[600],
       },
       T32: {
         fontFamily: "Poppins-Bold",
         fontSize: 32,
         fontWeight: 700,
         lineHeight: "40px",
-        color: PrendaGreys[600],
       },
     },
     components: {
@@ -384,9 +376,7 @@ export const createPrendaTheme = (
       MuiTypography: {
         defaultProps: {
           variantMapping: {
-            // Spark parity: label rendered inline (span) so it can be used
-            // mid-sentence, e.g. "Start a <label>multi-family microschool</label>"
-            label: "span",
+            label: "p",
             description: "p",
             T14: "span",
             T18: "p",
