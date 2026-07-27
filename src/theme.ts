@@ -23,6 +23,7 @@ declare module "@mui/material/styles" {
   // #region Custom typography variants
   interface TypographyVariants {
     label: React.CSSProperties
+    labelInline: React.CSSProperties
     description: React.CSSProperties
     T14: React.CSSProperties
     T18: React.CSSProperties
@@ -33,6 +34,7 @@ declare module "@mui/material/styles" {
 
   interface TypographyVariantsOptions {
     label?: React.CSSProperties
+    labelInline?: React.CSSProperties
     description?: React.CSSProperties
     T14?: React.CSSProperties
     T18?: React.CSSProperties
@@ -60,6 +62,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     label: true
+    labelInline: true
     description: true
     T14: true
     T18: true
@@ -330,15 +333,20 @@ export const createPrendaTheme = (
         fontWeight: 600,
         fontSize: 16,
         lineHeight: "20px",
-        color: PrendaGreys[500],
+      },
+      // Same styles as label, but rendered inline (span) for use
+      // mid-sentence, e.g. "Start a <labelInline>multi-family microschool</labelInline>"
+      labelInline: {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: 600,
+        fontSize: 16,
+        lineHeight: "20px",
       },
       description: {
         fontWeight: 400,
         fontSize: 14,
         lineHeight: "20px",
-        color: PrendaGreys[500],
       },
-      // Spark parity: heading variants used text.heading (neutral 600)
       T14: {
         fontFamily: "Poppins-Bold",
         fontSize: 14,
@@ -346,35 +354,30 @@ export const createPrendaTheme = (
         lineHeight: "20px",
         letterSpacing: "0.04em",
         textTransform: "uppercase",
-        color: PrendaGreys[600],
       },
       T18: {
         fontFamily: "Poppins-SemiBold",
         fontSize: 18,
         fontWeight: 600,
         lineHeight: "28px",
-        color: PrendaGreys[600],
       },
       T22: {
         fontFamily: "Poppins-SemiBold",
         fontSize: 22,
         fontWeight: 600,
         lineHeight: "28px",
-        color: PrendaGreys[600],
       },
       T28: {
         fontFamily: "Poppins-Bold",
         fontSize: 28,
         fontWeight: 700,
         lineHeight: "36px",
-        color: PrendaGreys[600],
       },
       T32: {
         fontFamily: "Poppins-Bold",
         fontSize: 32,
         fontWeight: 700,
         lineHeight: "40px",
-        color: PrendaGreys[600],
       },
     },
     components: {
@@ -384,9 +387,8 @@ export const createPrendaTheme = (
       MuiTypography: {
         defaultProps: {
           variantMapping: {
-            // Spark parity: label rendered inline (span) so it can be used
-            // mid-sentence, e.g. "Start a <label>multi-family microschool</label>"
-            label: "span",
+            label: "p",
+            labelInline: "span",
             description: "p",
             T14: "span",
             T18: "p",
