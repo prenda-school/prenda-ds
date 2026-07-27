@@ -23,6 +23,7 @@ declare module "@mui/material/styles" {
   // #region Custom typography variants
   interface TypographyVariants {
     label: React.CSSProperties
+    labelInline: React.CSSProperties
     description: React.CSSProperties
     T14: React.CSSProperties
     T18: React.CSSProperties
@@ -33,6 +34,7 @@ declare module "@mui/material/styles" {
 
   interface TypographyVariantsOptions {
     label?: React.CSSProperties
+    labelInline?: React.CSSProperties
     description?: React.CSSProperties
     T14?: React.CSSProperties
     T18?: React.CSSProperties
@@ -60,6 +62,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     label: true
+    labelInline: true
     description: true
     T14: true
     T18: true
@@ -331,6 +334,14 @@ export const createPrendaTheme = (
         fontSize: 16,
         lineHeight: "20px",
       },
+      // Same styles as label, but rendered inline (span) for use
+      // mid-sentence, e.g. "Start a <labelInline>multi-family microschool</labelInline>"
+      labelInline: {
+        fontFamily: "Inter-SemiBold",
+        fontWeight: 600,
+        fontSize: 16,
+        lineHeight: "20px",
+      },
       description: {
         fontWeight: 400,
         fontSize: 14,
@@ -377,6 +388,7 @@ export const createPrendaTheme = (
         defaultProps: {
           variantMapping: {
             label: "p",
+            labelInline: "span",
             description: "p",
             T14: "span",
             T18: "p",
