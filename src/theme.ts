@@ -306,7 +306,6 @@ export const createPrendaTheme = (
         100: PrendaGreens[100],
         200: PrendaGreens[200],
         300: PrendaGreens[300],
-        600: PrendaGreens[600],
         700: PrendaGreens[700],
       },
       prendaMagenta: {
