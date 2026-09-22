@@ -46,6 +46,7 @@ export const PrendaYellows = {
 
 export const PrendaGreens = {
   700: "#006644",
+  600: "#00875A", // rgba(0, 135, 90, 1)
   300: "#79F2C0",
   200: "#ABF5D1",
   100: "#E3FCEF",
